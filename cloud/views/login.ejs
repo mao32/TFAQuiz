@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href="/login.css" media="all" rel="stylesheet" type="text/css"/>
+    <script>
+        //window.onload=function switchForm(){
+          function switchForm(){
+            var button=document.getElementById('switch');            
+            if(button) {
+              var strform1,strform2;
+              if(button.value=='Signup') {strform1='frmLogin';strform2='frmSignup';}              
+              else {strform1='frmSignup';strform2='frmLogin'}              
+              console.log("Button find "+button.value);
+              var form1=document.getElementById(strform1);
+              form1.style.display='none';
+              var form2=document.getElementById(strform2);
+              form2.style.display='block';
+              button.value=(button.value=='Signup')?'Login' : 'Signup';
+              button.innerHTML=button.value;
+            }
+            else console.log("Button  NOT found");
+        }
+    </script>
+
+   <title>TFAQuiz</title>
+  </head>
+  <body>
+  	<div id="todoapp">
+      <div class="title">
+        <h1>TFAQuiz</h1>
+      </div>
+  		<div class="content">
+      <header id="header"></header>
+			<div class="login">
+        <button id="switch" onclick="switchForm()" value='Signup'>Signup</button>
+				<form id='frmLogin' class="login-form" action="/login" method="post">
+				  <h2>Log In</h2>
+				  <div class="error" style="display:none"></div>
+				  <input type="text" name="username" id="username" placeholder="Username" />
+				  <input type="password" name="password" id="password" placeholder="Password" />
+				  <input type="submit" value="Login"/>
+				</form>
+        <form id='frmSignup' style='display:none;' class="signup-form" action="/signup" method="post">
+          <h2>Sign Up</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" name="username" id="username" placeholder="Username" />
+          <input type="password" name="password" id="password" placeholder="Password" />
+          <input type="email" name="mail" id="mail" placeholder="E-mail" />
+          <input type="submit" value="SignUp"/>
+        </form>
+			</div>
+		</div>
+	</div>
+<!--
+	<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        Parse.FacebookUtils.init({
+          appId      : '684485724921533',
+          status     : true,
+          xfbml      : true,
+          cookie     : true, // enable cookies to allow Parse to access the session 
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+-->
+</body>
+</html>

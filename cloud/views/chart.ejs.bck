@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Chart</title>
+		<script src="../Chart.min.js"></script>
+		<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+		<style>
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" height="450" width="600"></canvas>
+
+
+	<script>
+
+		var barChartData = {
+			//labels : ["January","February","March","April","May","June","July"],
+			labels : [<%= decodeURI(x) %>],
+			datasets : [
+				{
+					fillColor : "rgba(255,0,0,0.5)",
+					//strokeColor : "rgba(220,220,220,1)",
+					strokeColor : "#000",
+					//data : [65,59,90,81,56,55,40]
+					data : [<%= y %>]
+				}
+				/*,
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [28,48,40,19,96,27,100]
+				}
+				*/
+			]
+			
+		}
+
+	var options={
+		fillToZero:true,
+		//Boolean - If we want to override with a hard coded scale
+		//scaleOverride : true,
+		//Number - The scale starting value
+		//scaleStartValue : 0,
+		//Boolean - If we show the scale above the chart data			
+		scaleOverlay : true,
+		//Boolean - Whether to animate the chart
+		animation : true,
+		//Number - Number of animation steps
+		animationSteps : 120,
+		
+		//String - Animation easing effect
+		animationEasing : "easeOutQuart"
+	};
+	var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Bar(barChartData,options);
+	
+
+	
+	</script>
+	</body>
+</html>

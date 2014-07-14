@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href="login.css" media="all" rel="stylesheet" type="text/css"/>
+    <title>Questions</title>
+
+  </head>
+  <body>   
+
+ <div id="user-info">
+        Signed in as <%= username %> (<a href="/logout" class="log-out" >Log out</a>)
+ </div>
+
+ <h1><%= title %>&nbsp; <%= number %> </h1>
+<form action="/questions" method="post">
+	<ol>
+		<h4>
+<% 
+	/* stampo domande */
+	/*questions.sort(function(){return Math.random()-0.5;});*/
+	questions.forEach(function(record) { 
+%>
+<li>
+	<dl><dt><h3><%= record.get("Name") %></h3> </dt>
+	
+	
+	<% /* stampo risposte*/
+		console.log("--- answers "+record.id+" - answers "+answers[record.id].length); 
+		if(answers[record.id].length>0) answers[record.id].forEach(function(ans){ 
+	%>
+		
+	<%			
+			if(!score){ /* modalita input */
+	 %>
+	
+		<dd><input type="radio" name='<%= record.id %>' value='<%= ans.id %>' >  <%= ans.get("Name") %></dd>
+		<% }else{ /* modalita risultato*/ %>
+		<!--<div class="textimage">-->
+		<%
+			if(ans.get("ID")=='A'){ /*risposta corretta*/ 
+				console.log("--- scrivo risposta corretta");
+				%>
+				<!--<img height="25" width="25" src="../../images/OK.jpeg"/ > -->
+				<!--<div class="OK">-->
+				<dd class="OK">
+
+			<% }else if(body[record.id] && body[record.id]==ans.id ) {/*risposta sbagliata*/
+					console.log("--- scrivo risposta sbagliata");
+				%>
+				<!--<img height="25" width="25" src="../../images/KO.png"/> -->
+				<!--<div class="KO">-->
+				<dd class="KO">
+			<%} else{ %>
+				<dd>
+			<%}%>
+			<%= ans.get("Name") %></dd>
+			<!--<div class="clearer"> </div>-->
+			<!--</div>-->
+		<% } %>
+		<%/*= ans.get("Name") */%>
+
+		<br/>
+
+	<%});%>
+	</dl></li>
+	
+     <% }); %>  
+ </h4>
+ </ol>
+	<input type="submit">
+	</form>
+     
+ 
+
+</body>
+</html>

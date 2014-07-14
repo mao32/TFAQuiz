@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "TFAQuiz": {
+            "applicationId": "rThlW4X5uO7ZwVdN7kgx9QZ43yttXTOYih1aHmZL", 
+            "masterKey": "mNFJhY9b5mtMZafhnIYaNzViVM4jYpnvNpmBPkmn"
+        }, 
+        "_default": {
+            "link": "TFAQuiz"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

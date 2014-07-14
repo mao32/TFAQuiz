@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href="/login.css" media="all" rel="stylesheet" type="text/css"/>
+    <title>Courses</title>
+  </head>
+  <body>
+    <div id="user-info">
+        Signed in as <b><%= username %></b> (<a href="/logout" class="log-out" >Log out</a>)
+    </div>
+  	<div id="todoapp">
+      <div class="title">
+        <h1>Corsi</h1>
+      </div>
+  		<div class="content">
+        <!--<header id="header"></header>-->
+        <div class="login">
+        <form class="login-form" action="/courses" method="post">
+          <h2>Scegli il corso</h2>
+          <!--<ol>-->
+          <h4>            
+              <% 
+                /* stampo corsi */  
+                courses.forEach(function(record) { 
+              %>
+              <!--<li> <dl> <dt><h3>
+              <%/*= record.get("Name") */%></h3> </dt>   <dd><input type="radio" name='
+              <%/*= record.id */%>' value='
+              <%/*= ans.id */%>' >  
+              <%/*= ans.get("Name") */%></dd>-->
+              <input  type="radio" name='course' value='<%= record.id %>' > <b> <%=record.get("Name") %></b> <br/>
+              <% }); %>
+          </h4>
+              <input type="submit" value="Inizia"/>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

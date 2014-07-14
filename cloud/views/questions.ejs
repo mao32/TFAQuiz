@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link href="/login.css" media="all" rel="stylesheet" type="text/css"/>
+  	<meta charset="utf-8">
+	<script src="/mathscribe/jquery-1.4.3.js" type="text/javascript"></script>
+	<script src="/mathscribe/jscurry-0.3.0.js" type="text/javascript" ></script>
+	<script src="/mathscribe/jqmath-0.4.0.js" type="text/javascript"></script>	
+	<link href="/mathscribe/jqmath-0.4.0.css" rel="stylesheet" type="text/css">	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia">
+
+    <title>Questions</title>
+
+  </head>
+  <body>   
+
+ <div id="user-info">
+        Signed in as <b><%= username %></b> (<a href="/logout" class="log-out" >Log out</a>)
+ </div>
+
+ <h1><%= title %>&nbsp; <%= number %> </h1>
+<form action="<%= '/questions/' + courseId %>" method="post">
+	<ol>
+		<h4>
+<% 
+	/* stampo domande */	
+	questions.forEach(function(record) { 
+%>
+<li> 
+	<dl><dt><h3><%= record.get("Name") %></h3> </dt>
+	
+	
+	<% /* stampo risposte*/
+		/*console.log("--- answers "+record.id+" - answers "+answers[record.id].length); */
+		if(answers[record.id].length>0) answers[record.id].forEach(function(ans){ 
+	%>
+		
+	
+		<dd><input type="radio" name='<%= record.id %>' value='<%= ans.id %>' >  <%= ans.get("Name") %></dd>
+		<!--<br/>	-->
+	
+     <% }); %>  
+     </dl></li>
+ <%});%>
+ <br/>TESTI<br/>
+ <% 
+	/* stampo testi */	
+	texts.forEach(function(record) { 
+%>
+<li> 
+	<dl><dt><h2><%= record.get("Title") %></h2> </dt>
+		<dd><%=record.get("Text") %></dd>
+		<dd><%=record.get("Footer")%></dd>
+<% }); %>  
+ </dl></li>		
+
+ </h4>
+ </ol>
+ 	<input type="submit">
+	</form>
+     
+ 
+
+</body>
+</html>
